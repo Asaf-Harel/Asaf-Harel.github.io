@@ -249,7 +249,7 @@
                     Only voltage output is mirrored. Settings changed on the leader do not affect the follower.<br>
                     The motor will spin in the same direction as the leader. This can be changed  by passing a true<br>
                     constant after the leader parameter. Following anything other than a CAN SPARK MAX<br>
-                    is not officially supported.
+                    is not officially supported.<br>
                     <br />
                     <b>Parameters:</b><br>
                     <code>motor</code> - Motor controller to follow.<br><br>
@@ -277,26 +277,9 @@
                 <li class="list-group-item">Two</li>
                 <li class="list-group-item">Three</li>
                 </ul>
-                <div class="panel-footer">Footer</div>
             </div>
             </div>
         </div>
     </div>
 </body>
-<script>
-    var content = $(".heading code").text();
-
-    if (content == "getVelocity()") {
-
-        $(this).css("color", "#ffffff");
-    }
-   if (content == "low") {
-
-        $(this).css("color", "#ccc");
-    }
-   if (content == "critical") {
-
-        $(this).css("color", "#000");
-    }
-</script>
 </html>
