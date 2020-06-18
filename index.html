@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="./style.css" rel="stylesheet"/>
+    <title>MAUtils Docs</title>
+</head>
+<body>
+    <h1><b>MAUtils</b></h1>
+    <br>
+    <p style="text-align: center;"><a href="https://github.com/MA5951/MA5951-MAutils" target="_blank">GitHub</a></p>
+    <div class="container">
+        <div class="panel-group">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse1">MAMotorController</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <ul class="list-group">
+                <li class="list-group-item">
+                    <code class="heading">setvoltage(<span id="type">double</span> setPower) -> <span id="type">void</span></code>: <br>
+                    Sets the voltage output of the SpeedController. Compensates for the current bus voltage to ensure that <br>
+                    the desired voltage is output even if the battery voltage is below 12V - highly useful when the voltage<br> 
+                    outputs are "meaningful" (e.g. they come from a feedforward calculation).<br />
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>setPower</code> - The voltage to output Value should be between -1.0 and 1.0.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.setvoltage(0.2) <span id="comm">// Set output voltage to 0.2</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">set(<span id="type">double</span> setPower) -> <span id="type">void</span></code>: <br>
+                    Common interface for setting the speed of a speed controller.<br />
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>setPower</code> - The speed of the motor. Value should be between -1.0 and 1.0.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.set(0.5) <span id="comm">// Set speed to 0.2</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">resetEncoder() -> <span id="type">void</span></code>: <br>
+                    Sets the sensor position to 0.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.resetEncoder() <span id="comm">// Reset encoder</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">resatOnLimitF(<span id="type">boolean</span> limit) -> <span id="type">void</span></code>: <br>
+                    Enables clearing the position of the feedback sensor when the forward limit switch is triggered.<br>
+                    work with TalonSRX<br />
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>clearPositionOnLimitF</code> - Whether clearing is enabled, false as default<br>
+                    <code>timeoutMs</code> - Timeout value in ms. If nonzero, function will  wait for config success and report an error if it times out.<br>
+                     If zero, no blocking or checking is performed.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.resatOnLimitF(<span id="bool">true</span>) <span id="comm">// Clearing the position of the feedback sensor when the forward limit switch is triggered</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">resatOnLimitR(<span id="type">boolean</span> limit) -> <span id="type">void</span></code>: <br>
+                    Enables clearing the position of the feedback sensor when the reverse limit switch is triggered.<br>
+                    work with TalonSrx<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>void clearPositionOnLimitF</code> - Whether clearing is enabled, false as default<br>
+                    <code>timeoutMs</code> - Timeout value in ms. If nonzero, function will  wait for config success and report an error if it times out.<br>
+                     If zero, no blocking or checking is performed.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.resatOnLimitR(<span id="bool">true</span>) <span id="comm">// Clearing the position of the feedback sensor when the reverse limit switch is triggered</span>
+                    </code>
+                </li>
+                 <li class="list-group-item">
+                    <code class="heading">PhaseSensor(<span id="type">boolean</span> PhaseSensor) -> <span id="type">void</span></code>: <br>
+                    Sets the phase of the sensor. Use when controller forward/reverse output doesn't correlate to <br>
+                    appropriate forward/reverse reading of sensor. Pick a value so that positive PercentOutput yields<br>
+                     a positive change in sensor. After setting this, user can freely call SetInverted() with any value.<br />
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>PhaseSensor</code> - Indicates whether to invert the phase of the sensor.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br> 
+                        motor.PhaseSensor(<span id="bool">true</span>) <span id="comm">// Invert the phase of the sensor</span>
+                    </code>
+                </li>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getPosition() -> <span id="type">double</span></code>: <br>
+                    Get the selected motor position (in raw sensor units).
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getPosition() <span id="comm">// Get the motor position</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getVelocity() -> <span id="type">double</span></code>: <br>
+                    Get the selected motor velocity.
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getVelocity() <span id="comm">// Get the motor velocity</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getForwardLimitSwitch() -> <span id="type">boolean</span></code>: <br>
+                    Get the value from the forward digital input.<br><br>
+                    Retrieve the value of a single digital input channel from a motor controller. This method will <br>
+                    return the state of the limit input based on the selected polarity, whether or not it is enabled.
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getForwardLimitSwitch() <span id="comm">// Get the forward limit switch state</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getReversLimitSwitch() -> <span id="type">boolean</span></code>: <br>
+                    Get the value from the reverse digital input.<br<br>
+                    Retrieve the value of a single digital input channel <br>
+                    from a motor controller. This method will return the state of the limit input based on the selected<br>
+                    polarity, whether or not it is enabled.
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getReversLimitSwitch() <span id="comm">// Get the reverse limit switch state</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">overrideLimitSwitches(<span id="type">boolean</span> overrid) -> <span id="type">void</span></code>: <br>
+                    Sets the enable state for limit switches.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>overrid</code> - Enable state for limit switches.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.overrideLimitSwitches(<span id="bool">true</span>) <span id="comm">// Set limit switches to enable</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getOutput() -> <span id="type">double</span></code>: <br>
+                    Common interface for getting the current speed of a speed controller.
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getOutput() <span id="comm">// Get motor speed (between -1.0 to 1.0)</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getStatorCurrent() -> <span id="type">double</span></code>: <br>
+                    Get the motor controller's output current in Amps.
+                    <br /><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.getStatorCurrent()
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">configRampRate(<span id="type">double</span> rampRate) -> <span id="type">void</span></code>: <br>
+                    Sets the ramp rate for open loop control modes.<br><br>
+                    This is the maximum rate at which the motor controller's output is allowed to change.
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>rampRate</code> - Time in seconds to go from 0 to full throttle.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.configRampRate(0.8) <span id="comm">// Set ramp rate to 0.8</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setInverted(<span id="type">boolean</span> setInverted) -> <span id="type">void</span></code>: <br>
+                    Common interface for inverting direction of a speed controller.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>setInverted</code> - The state of inversion, true is inverted.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.setInverted(<span id="bool">true</span>) <span id="comm">// Invert motor</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">DisableLimit(<span id="type">boolean</span> onOff) -> <span id="type">void</span></code>: <br>
+                    Disables limit switches triggering (if enabled) when the sensor is no longer detected.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>onOff</code> - Disable triggering.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.DisableLimit(<span id="bool">true</span>) <span id="comm">// Disable limit switch triggering</span>
+                    </code>
+                </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="panel-group">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapse2">MAPIDController</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <ul class="list-group">
+                <li class="list-group-item">One</li>
+                <li class="list-group-item">Two</li>
+                <li class="list-group-item">Three</li>
+                </ul>
+                <div class="panel-footer">Footer</div>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var content = $(".heading code").text();
+
+    if (content == "getVelocity()") {
+
+        $(this).css("color", "#ffffff");
+    }
+   if (content == "low") {
+
+        $(this).css("color", "#ccc");
+    }
+   if (content == "critical") {
+
+        $(this).css("color", "#000");
+    }
+</script>
+</html>
