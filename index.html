@@ -217,6 +217,49 @@
                         motor.DisableLimit(<span id="bool">true</span>) <span id="comm">// Disable limit switch triggering</span>
                     </code>
                 </li>
+                <li class="list-group-item">
+                    <code class="heading">changeMood(<span id="type">boolean</span> onOff) -> <span id="type">void</span></code>: <br>
+                    Sets the mode for the motor controler.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>onOff</code> - Idle mode: Brake = <span id="bool">true</span>, Coast = <span id="bool">false</span>.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor.changeMood(<span id="bool">false</span>) <span id="comm">// Set motor to coast</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">followIMotorController(<span id="type">MAMotorControler</span> motor) -> <span id="type">void</span></code>: <br>
+                    Set the control mode and output value so that this motor controller will follow another motor controller.<br>
+                    Currently supports following Victor SPX and Talon SRX.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>motor</code> - Motor controller to follow.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor1 =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        <span id="type">MAMotorControler</span> motor2 =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor2.followIMotorController(motor1) <span id="comm">// Set motor2 to follow motor1</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">followSparkMax(<span id="type">MAMotorControler</span> motor) -> <span id="type">void</span></code>: <br>
+                    Causes this controller's output to mirror the provided leader.<br>
+                    Only voltage output is mirrored. Settings changed on the leader do not affect the follower.<br>
+                    The motor will spin in the same direction as the leader. This can be changed  by passing a true<br>
+                    constant after the leader parameter. Following anything other than a CAN SPARK MAX<br>
+                    is not officially supported.
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>motor</code> - Motor controller to follow.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor1 =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        <span id="type">MAMotorControler</span> motor2 =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        motor2.followSparkMax(motor1) <span id="comm">// Set motor2 to follow motor1</span>
+                    </code>
+                </li>
                 </ul>
             </div>
             </div>
