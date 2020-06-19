@@ -273,9 +273,61 @@
             </div>
             <div id="collapse2" class="panel-collapse collapse">
                 <ul class="list-group">
-                <li class="list-group-item">One</li>
-                <li class="list-group-item">Two</li>
-                <li class="list-group-item">Three</li>
+                <li class="list-group-item">
+                    <code class="heading">setOutputRange(<span id="type">double</span> low, <span id="type">double</span> high) -> <span id="type">void</span></code>: <br>
+                    Set the OutPutRange of the PIDController<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>low</code> - The lower boundary to which to clamp value.<br>
+                    <code>high</code> - The higher boundary to which to clamp value.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setOutputRange(0.25, 0.73) <span id="comm">// Set the output range to 0.25-0.73</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setSetpoint(<span id="type">double</span> setPoint) -> <span id="type">void</span></code>: <br>
+                    Sets the distance for the PIDController.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>setPoint</code> - The desired setpoint.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setSetpoint(120) <span id="comm">// Set the setpoint to 120</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">atSetpoint(<span id="type">double</span> waitTime) -> <span id="type">boolean</span></code>: <br>
+                    Returns true if the error is within the percentage of the total input range, determined by<br>
+                    setTolerance and if the PID was at atSetPoint for a Period of time. This asssumes that the maximum<br>
+                    and minimum input were set using<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>waitTime</code> - The Time the PID need to be atSetPoint.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setSetpoint(100) <span id="comm">// Set the setpoint to 100</span><br>
+                        PIDController.setTolerance(10) <span id="comm">// Set the tolerance to 10</span><br>
+                        PIDController.atSetpoint(0.2) <span id="comm">// Return true if the robot is between 90-110 for 0.2 seconds, else return false</span>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">calculate(<span id="type">double</span> measurement, <span id="type">double</span> setPoint) -> <span id="type">double</span></code>: <br>
+                    Returns the next output of the PID controller.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>measurement</code> - The current measurement of the process variable (for example: encoder value).<br>
+                    <code>setpoint</code> - The new setpoint of the controller.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.calculate(motor.getPosition(), 1000) <span id="comm">// Calculate the next output with the encoder value and setpoint at 1000</span><br>
+                    </code>
+                </li>
                 </ul>
             </div>
             </div>
