@@ -328,6 +328,180 @@
                         PIDController.calculate(motor.getPosition(), 1000) <span id="comm">// Calculate the next output with the encoder value and setpoint at 1000</span><br>
                     </code>
                 </li>
+                <li class="list-group-item">
+                    <code class="heading">calculate(<span id="type">double</span> measurement) -> <span id="type">double</span></code>: <br>
+                    Returns the next output of the PID controller.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>measurement</code> - The current measurement of the process variable (for example: encoder value).<br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAMotorControler</span> motor =  new <span id="type">MAMotorControler</span>(...); <span id="comm">// Initialize new MAMotorControler instance</span><br>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.calculate(motor.getPosition()) <span id="comm">// Calculate the next output with the encoder value</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setPID(<span id="type">double</span> kp, <span id="type">double</span> ki,  <span id="type">double</span> kd) -> <span id="type">void</span></code>: <br>
+                    Returns the next output of the PID controller.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>kp</code> - The proportional coefficient.<br>
+                    <code>ki</code> - The integral coefficient.<br>
+                    <code>kd</code> - The derivative coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setPID(3e-2, 0.333, 7e-9) <span id="comm">// Set PID values to - P = 3e-2, I = 0.333, D = 7e-9</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setP(<span id="type">double</span> kP) -> <span id="type">void</span></code>: <br>
+                    Sets the Proportional coefficient of the PID controller gain.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>kp</code> - The proportional coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setP(3e-2) <span id="comm">// Set P value to 3e-2</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setI(<span id="type">double</span> ki) -> <span id="type">void</span></code>: <br>
+                    Sets the Integral coefficient of the PID controller gain.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>ki</code> - The integral coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setI(0.333) <span id="comm">// Set I value to 0.333</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setD(<span id="type">double</span> kd) -> <span id="type">void</span></code>: <br>
+                    Sets the Integral coefficient of the PID controller gain.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>kd</code> - The differential coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setD(7e-9) <span id="comm">// Set D value to 7e-9</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setF(<span id="type">double</span> kf) -> <span id="type">void</span></code>: <br>
+                    Sets the feed forward of the PID controller.<br>
+                    <br />
+                    <b>Parameters:</b><br>
+                    <code>kf</code> - The feed forward coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setF(2e-1) <span id="comm">// Set F value to 2e-1</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getP() -> <span id="type">double</span></code>: <br>
+                    Get the proportional coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.getP() <span id="comm">// Get the P value</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getI() -> <span id="type">double</span></code>: <br>
+                    Get the integral coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.getI() <span id="comm">// Get the I value</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getD() -> <span id="type">double</span></code>: <br>
+                    Get the differential coefficient.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.getD() <span id="comm">// Get the D value</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getPositionError() -> <span id="type">double</span></code>: <br>
+                    Returns the difference between the setpoint and the measurement.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setSetpoint(6864.32) <span id="comm">// Set the setpoint to 6864.32</span><br>
+                        PIDController.getPositionError() <span id="comm">// Get the difference between 6864.32 to the measurement</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">getSetpoint() -> <span id="type">double</span></code>: <br>
+                    Returns the current setpoint of the PIDController.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setSetpoint(6864.32) <span id="comm">// Set the setpoint to 6864.32</span><br>
+                        PIDController.getSetpoint() <span id="comm">// Get 6864.32 (the setpoint)</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">reset() -> <span id="type">void</span></code>: <br>
+                    Resets the previous error and the integral term.<br><br>
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.reset() <span id="comm">// Reset the I value</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">enableContinuousInput(<span id="type">double</span> minimumInput, <span id="type">double</span> maximumInput) -> <span id="type">void</span></code>: <br>
+                    Enables continuous input.<br>
+                    Rather then using the max and min input range as constraints, it considers them to be the same point<br>
+                    and automatically calculates the shortest route to the setpoint.<br><br>
+
+                    <b>Parameters:</b><br>
+                    <code>minimumInput</code> - The minimum value expected from the input.<br>
+                    <code>maximumInput</code> - The maximum value expected from the input.<br><br>
+
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.enableContinuousInput(0, 0.4) <span id="comm">// Set input to min 0 and max 0.4</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">disableContinuousInput() -> <span id="type">void</span></code>: <br>
+                    Disables continuous input.<br><br>
+
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.enableContinuousInput(0, 0.4) <span id="comm">// Set input to min 0 and max 0.4</span><br>
+                        PIDController.disableContinuousInput() <span id="comm">// Disable continuous input</span><br>
+                    </code>
+                </li>
+                <li class="list-group-item">
+                    <code class="heading">setIntegratorRange(<span id="type">double</span> minimumIntegral, <span id="type">double</span> maximumIntegral) -> <span id="type">void</span></code>: <br>
+                    Sets the minimum and maximum values for the integrator.<br>
+                    When the cap is reached, the integrator value is added to the controller output rather than the<br>
+                    integrator value times the integral gain.<br><br>
+
+                    <b>Parameters:</b><br>
+                    <code>minimumIntegral</code> - The minimum value of the integrator.<br>
+                    <code>maximumIntegral</code> - The maximum value of the integrator.<br><br>
+
+                    <b>Example:</b><br>
+                    <code>
+                        <span id="type">MAPidController</span> PIDController =  new <span id="type">MAPidController</span>(...); <span id="comm">// Initialize new MAPidController instance</span><br>
+                        PIDController.setIntegratorRange(0.1, 0.6) <span id="comm">// Set values range to min 0 and max 0.4</span><br>
+                    </code>
+                </li>
                 </ul>
             </div>
             </div>
